@@ -1,0 +1,26 @@
+# Ignore VS Code settings
+.vscode/
+
+# Ignore Competitive Programming Helper metadata (if you don't want to track it)
+.cph/
+
+# Ignore compiled binaries
+*.exe
+*.out
+*.class
+
+# Ignore Python cache (if any)
+__pycache__/
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+#Ignore everything
+*
+
+# But allow all folders (so we can reach .cpp files inside them)
+!*/
+
+# Allow only .cpp files
+!*.cpp
