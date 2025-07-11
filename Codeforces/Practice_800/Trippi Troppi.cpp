@@ -3,18 +3,9 @@ using namespace std;
 int main(){
     int t; cin>>t;
     while(t--){
-        string s;
-        cin>>s;
-
-        string ans;
-        ans.push_back(s[0]);
-
-        for(int i=0;i<s.size();i++){
-            if(s[i]==' '){
-                ans.push_back(s[i+1]);
-            }  
-        }
-
-        cout<<ans;
+        string a,b,c;
+        cin>>a>>b>>c;
+        
+        cout<<a[0]<<b[0]<<c[0]<<endl;
     }
 }
