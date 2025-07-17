@@ -10,9 +10,6 @@ int main(){
             cin>>a[i];
         }
 
-        //edge case
-
-
         int f=true;
         int waterLevel=1;
         int presentH=a[k-1];
@@ -29,7 +26,7 @@ int main(){
         }
             
 
-        while(presentH<=maxi)
+        while(presentH<maxi)
         {
             int nextH=presentH;
             auto nextHeightIt=upper_bound(begin(a),end(a),presentH);
@@ -42,12 +39,10 @@ int main(){
                 break;
             }
 
-            
-
             int timeTakenForTele=abs(nextH-presentH);
             int timeToReachWaterAtPresentHeight=abs(presentH-waterLevel)+1;
 
-            if(timeToReachWaterAtPresentHeight>timeTakenForTele){
+            if(timeToReachWaterAtPresentHeight<timeTakenForTele){
                 f=false;
                 break;
             }
@@ -58,7 +53,7 @@ int main(){
                 }
 
                 else{
-                    waterLevel+=timeToReachWaterAtPresentHeight;
+                    waterLevel+=timeTakenForTele;
                     presentH=nextH;
                 }
             }
