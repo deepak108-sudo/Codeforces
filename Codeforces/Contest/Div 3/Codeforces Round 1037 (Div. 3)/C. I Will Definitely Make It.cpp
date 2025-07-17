@@ -10,57 +10,32 @@ int main(){
             cin>>a[i];
         }
 
-        int f=true;
-        int waterLevel=1;
-        int presentH=a[k-1];
+        int initial=a[k-1];
 
-        //Sort for binary search
-        sort(begin(a),end(a));
+        set<int> st(a.begin(),a.end()); //We don't need repeated
+        vector<int> h;
+
+        //Updated Height
+        for(int x:st)
+            if(x>=initial) h.push_back(x);   //We only need greater than a[k-1]
         
+        int waterLevel=1;
+        bool f=true;
 
-        int maxi=*max_element(begin(a),end(a));
-
-        if(maxi==presentH){
-             cout<<"YES"<<endl;
-             continue;
-        }
+        for(int i=0;i<h.size()-1;i++){
+            int teleTime= h[i+1]-h[i];
+            int timeToReachWater=h[i]-waterLevel+1;
             
-
-        while(presentH<maxi)
-        {
-            int nextH=presentH;
-            auto nextHeightIt=upper_bound(begin(a),end(a),presentH);
-
-            if(nextHeightIt!=a.end()){
-                nextH=*nextHeightIt;
-            }
-            else{
-                f=false;
-                break;
-            }
-
-            int timeTakenForTele=abs(nextH-presentH);
-            int timeToReachWaterAtPresentHeight=abs(presentH-waterLevel)+1;
-
-            if(timeToReachWaterAtPresentHeight<timeTakenForTele){
-                f=false;
-                break;
-            }
-            else{
-                if(nextH==maxi){
-                    f=true;
+            if(timeToReachWater<teleTime)
+                {
+                    f=false;
                     break;
                 }
-
-                else{
-                    waterLevel+=timeTakenForTele;
-                    presentH=nextH;
-                }
-            }
-
+            
+            waterLevel+=teleTime;
         }
 
-        if(f) cout<<"YES"<<endl;
-        else cout<<"NO"<<endl;
+        cout<<((f) ? "YES" : "NO")<<endl;
+
     }
 }
