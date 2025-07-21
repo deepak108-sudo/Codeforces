@@ -10,8 +10,8 @@ int main(){
         vector<pair<int,int>> a;
 
         while(n!=0){
-            a.emplace_back(temp,n);
-            temp=ceil((temp+n)/2);
+            a.push_back({temp,n});
+            temp=ceil((temp+n)/2.0);
             n--;
         }
 
