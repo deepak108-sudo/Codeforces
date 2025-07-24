@@ -18,15 +18,18 @@ int main(){
         vector<int> ans;
 
         for(int i=0;i<n;i++){
-            for(int x:q){
-                while(x!=a[i]){
-                    ans.push_back(a[i]);
-                    q.erase(a[i]);
-                    break;
+                bool f=false;
+
+                for(auto it=q.begin(); it!=q.end(); ++it){
+
+                    if(*it!=a[i]){
+                        ans.push_back(*it);
+                        q.erase(*it);
+                        break;
+                    }
                 }
-            }
-            
         }
+        
 
         for(auto &i:ans) cout<<i<<" ";
         cout<<endl;
