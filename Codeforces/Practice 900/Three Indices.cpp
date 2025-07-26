@@ -10,7 +10,7 @@ int main(){
         vector<int> a(n);
         for(auto &i:a) cin>>i;
 
-        //Pair for storing number and its indices
+        //Pair for storing number and its indi
         vector<pair<int,int>> prefix(n); prefix[0]={INT_MAX,-1};
         vector<pair<int,int>> suffix(n); suffix[n-1]={INT_MAX,-1};
 
