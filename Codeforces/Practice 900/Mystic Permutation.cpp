@@ -8,41 +8,25 @@ int main(){
 
         //Taking input
         vector<int> a(n); 
-        set<int> st;
+        vector<int> b(n);
 
         for(int i=0;i<n;i++){
             cin>>a[i];
-            st.insert(a[i]);
+            b[i]=i+1;
         }
 
-        //edge case
-        if(n==1){
+        if(n==1) {
             cout<<-1<<endl;
             continue;
         }
 
-        //Processing
-        vector<int> result(n);
-
-        for(int i=0;i<n;i++){
-            for(auto it=st.begin(); it!=st.end(); ++it){
-                if(a[i]!=*it){
-                    result[i]=*it;
-                    st.erase(*it);
-                    break;
-                }
-            }
-            if(result[n-1]==0) result[n-1]=n;
+        for(int i=0;i<n-1;i++){
+            if(a[i]==b[i]) swap(b[i],b[i+1]);
         }
 
-        if(a[n-1] == result[n-1]){
-            result[n-1]=result[n-2];
-            result[n-2]=n;
-        }
+        if(b[n-1]==a[n-1]) swap(b[n-1],b[n-2]);
 
-        //Print
-        for(auto &i:result)
-            cout<<i<<" ";
+        for(auto &i:b) cout<<i<<" ";
         cout<<endl;
     }
 }
