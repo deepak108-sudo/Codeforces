@@ -3,12 +3,10 @@ using namespace std;
 
 int main(){
     int n; cin>>n;
-    unordered_map<int,int> mp;
+    vector<int> s(n+1);
 
     for(int i=1;i<=n;i++){
-        int accused;
-        cin>>accused;
-        mp[i]=accused;
+        cin>>s[i];
     }
 
     vector<int> result;
@@ -19,7 +17,7 @@ int main(){
 
         while(seen.find(current)==seen.end()){
             seen.insert(current);
-            current=mp[current];
+            current=s[current];
         }
 
         result.push_back(current);
