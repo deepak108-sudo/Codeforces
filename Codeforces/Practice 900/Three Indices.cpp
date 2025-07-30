@@ -5,7 +5,7 @@ int main(){
     int t; cin>>t;
     while(t--){
         int n; cin>>n;
-
+        //TO Do
         //input
         vector<int> a(n);
         for(auto &i:a) cin>>i;
