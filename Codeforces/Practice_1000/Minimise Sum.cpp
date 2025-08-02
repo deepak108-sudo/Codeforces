@@ -10,10 +10,6 @@ int main(){
         for(int &i:a) cin>>i;
 
         //Process
-        if(a[0]>a[1])
-            cout<<a[0]+a[1]<<endl;
-        else
-            cout<<2*a[0]<<endl;
-
+        cout<<min(a[0]+a[1],2*a[0])<<endl;
     }
 }
