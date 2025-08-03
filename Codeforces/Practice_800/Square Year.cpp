@@ -3,16 +3,13 @@ using namespace std;
 int main(){
     int t; cin>>t;
     while(t--){
-        string s; cin>>s;
-        int num=stoi(s);
+        int n;
+        cin>>n;
 
-        int root=sqrt(num);
+        int root=ceil(sqrt(n));
 
-        if(root*root==num){
-            int a=root/2;
-            int b=root-a;
-
-            cout<<a<<" "<<b<<endl;
+        if(root*root==n){
+            cout<<0<<" "<<root<<endl;
         }
         else{
             cout<<-1<<endl;
