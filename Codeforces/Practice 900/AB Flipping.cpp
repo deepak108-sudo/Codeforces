@@ -5,27 +5,19 @@ int main(){
     while(t--){
         int n; cin>>n;
         string s; cin>>s;
-        set<int> st;
+        
+        bool f=false;
 
-        for(int i=0;i<n;i++) st.insert(i);
-
-        int cnt=0;
-        auto it=st.begin();
-
-        while(it!=st.end()){
-            int i=*it;
-
-            if(s[i]=='A' && s[i+1]=='B'){
-                swap(s[i],s[i+1]);
-                st.erase(i);
-                
-                cnt++;
-                it=st.begin();
-                continue;
+        int mn=n+1,mx=0;
+        for(int i=0;i<n;i++){
+            if(s[i]=='A' && f==false){
+                f=true;
+                mn=i;
             }
-            it++;
+            else if(s[i]=='B')
+                mx=i;
         }
 
-        cout<<cnt<<endl;
+        cout<<((mx-mn)<0 ? 0 : (mx-mn))<<endl;
     }
 }
