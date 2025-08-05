@@ -9,38 +9,21 @@ int main(){
         //Taken input
         for(int &i:a) cin>>i;
 
-        unordered_map<char,int> mp;
-        unordered_map<int,char> mp1;
-        stack<char> q;
+        vector<int> mp(26,0);
 
-        for(char ch='z';ch>='a';ch--) q.push(ch);
+        string res;
+        for(auto &num:a){
+                for(int i=0;i<26;i++){
+                    if(mp[i]==num){
+                        res+=(char)(i+'a');
 
-        vector<char> res(n);
-        for(int i=0;i<n;i++){
-            
-            if(a[i]==0){
-                int temp=q.top();
-                q.pop();
-
-                res[i]=temp;
-
-                mp[temp]++;
-                mp1[mp[temp]] = temp;
+                        mp[i]++;
+                        break;
+                    }
+                }
             }
-            else{
-                char t=mp1[a[i]];
-                res[i]=mp1[a[i]];
-                
-                mp[t]++;
-                mp1[mp[t]]=t;
-
-
-
-            }
-        }
-
-        //Print
-        for(char &ch:res) cout<<ch;
+        cout<<res;
         cout<<endl;
     }
+        
 }
