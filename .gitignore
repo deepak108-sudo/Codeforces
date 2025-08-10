@@ -1,8 +1,11 @@
 # Ignore VS Code settings
 .vscode/
+.vscode/*
 
 # Ignore Competitive Programming Helper metadata (if you don't want to track it)
 .cph/
+
+.vscode
 
 # Ignore compiled binaries
 *.exe
