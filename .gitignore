@@ -1,5 +1,7 @@
 # Ignore VS Code settings
 .vscode/
+.vscode
+.cph
 
 # Ignore Competitive Programming Helper metadata (if you don't want to track it)
 .cph/
