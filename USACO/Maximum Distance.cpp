@@ -5,21 +5,20 @@ int main(){
     int n; cin>>n;
     vector<int> x(n),y(n);
 
-    for(int i=0;i<n;i++){
-        cin>>x[i];
-    }
+    //Taking input
+    for(int &i:x) { cin>>i; }
+    for(int &j:y) { cin>>j; }
 
-    for(int i=0;i<n;i++){
-        cin>>y[i];
-    }
-
-    //Finding each distance
+    //Calculating
     int maxi=INT_MIN;
     for(int i=0;i<n;i++){
         for(int j=i+1;j<n;j++){
-            int dist_sq=(x[i]-x[j])*(x[i]-x[j]) + (y[i]-y[j])*(y[i]-y[j]);
+            int dx=x[i]-x[j];
+            int dy=y[i]-y[j];
 
-            maxi=max(maxi,dist_sq);
+            int square=dx*dx+dy*dy;
+
+            maxi=max(maxi,square);
         }
     }
 
