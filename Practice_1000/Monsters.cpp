@@ -1,14 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define pp pair<int,int>
-
-struct cmp{
-    bool operator()(const pp& a,const pp& b) const{
-        if(a.first != b.first) return a.first<b.first;
-        return a.second>b.second;
-    }
-};
+#define all(v) begin(v),end(v)
 
 int main(){
     int t; cin>>t;
@@ -19,35 +12,22 @@ int main(){
         for(int i=0;i<n;i++) {
             cin>>a[i];
             a[i]%=k;
+
+            if(a[i]==0) a[i]=k;
         }
 
-        priority_queue<pp,vector<pp>,cmp> pq;
+        vector<int> ord(n);
+        iota(all(ord),0); //Fill form 0,1,2,..
 
-        for(int i=0;i<n;i++){
+        //sort keep in mind if tie happen do not change relative order
+        stable_sort(all(ord),[&](int i,int j){
+            return a[i]>a[j];
+        });
 
-            if(a[i]==0) //becomes zero after modulo k
-            {
-                cout<<i+1<<" ";
-                continue;
-            }
-            pq.push({a[i],i});
-        }
+        //Print
+        for(int &i:ord)
+            cout<<i+1<<" ";
 
-        //Process
-        while(!pq.empty()){
-            auto pair=pq.top();
-            pq.pop();
-            int val=pair.first;
-            int idx=pair.second;
-
-            val-=k;
-            if(val<=0){
-                cout<<idx+1<<" ";
-            }
-            else{
-                pq.push({val,idx});
-            }
-        }
         cout<<endl;
     }
 }
