@@ -1,14 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-long long cal(int l,int k){
-    long long ans=1,cnt=1;
-    while(l!=k){
-        cnt+=1;
-        ans+=(cnt);
-        l--;
-    }
-    return ans;
-}
 
 int main(){
     int t; cin>>t;
@@ -19,24 +10,26 @@ int main(){
         vector<int> a(n);
         for(int &i:a) cin>>i;
 
-        int i=0,j=0;
-        long long cnt=0;
-        while(j<n){
-            while(j<n && a[j]<=q){
-                j++;
+        //Process
+        int len=0;
+        long long ans=0;
+        for(int i=0;i<n;i++){
+            if(a[i]<=q){
+                len++;
             }
-            int len=j-i;
-           // cout<<len<<"----"<<endl;
+            else{
+                if(len>=k)
+                    ans+=(len-k+1)*(len-k+2LL)/2;
 
-            if(len>=k)
-                cnt+=cal(len,k);
-
-            while(j<n && a[j]>q){
-                j++;
+                len=0;
             }
-            i=j;
         }
 
-        cout<<cnt<<endl;
+        //Last calculation
+        if(len>=k)
+            ans+=(len-k+1)*(len-k+2LL)/2;
+        
+
+        cout<<ans<<endl;
     }
 }
