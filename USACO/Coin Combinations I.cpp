@@ -1,31 +1,30 @@
 #include<bits/stdc++.h>
 using namespace std;
-vector<int> dp;
 int mod=1e9+7;
 
-int solve(vector<int> &a,int idx,int t){
-    if(t==0)    return 1;
-    if(t<0)     return 0;
-
-    if(dp[t]!=-1){
-        return dp[t];
-    }
-
-    int ans=0;
-    for(int i=0;i<a.size();i++){
-        ans+=solve(a,idx+1,t-a[i]);
-    }
-
-    return dp[t]=ans%mod;
-}
-
 int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int n,x; cin>>n>>x;
+    
+    //input
+    vector<int> coins(n);
+    for(int &i:coins) cin>>i;
+    
+    //ways initialization
+    vector<int> ways(x+1,0);
+    ways[0]=1;
 
-    vector<int> a(n);
-    for(int &i:a) cin>>i;
+    //Filling table
+    for(int sum=1;sum<=x;sum++){
+        for(int c:coins){
+            if(sum-c>=0){
+                ways[sum]+=ways[sum-c];
+                if(ways[sum]>=mod) ways[sum]-=mod;
+            }
+        }
+    }
 
-    dp.resize(x+1,-1);
-
-    cout<<solve(a,0,x);
+    cout<<ways[x]<<endl;
 }
