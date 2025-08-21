@@ -2,33 +2,33 @@
 using namespace std;
 int mod=1e9+7;
 
-vector<vector<int>> dp;
-
-int solve(vector<int> &price,vector<int> &page,int i,int sum){
-    if(sum<0){
-        return -1e9;
-    }
-    if(i==(int)page.size()){
-        return 0;
-    }
-    if(dp[i][sum]!=-1){
-        return dp[i][sum];
-    }
-
-    int take=page[i]+solve(price,page,i+1,sum-price[i]);
-    int skip=solve(price,page,i+1,sum);
-    
-    return dp[i][sum]=max(take,skip);
-}
 
 int main(){
     int n,x; cin>>n>>x;
-    vector<int> price(n);
+    vector<pair<int,int>> books(n);
+
+    vector<int> cost(n);
     vector<int> page(n);
 
-    for(int &i:price) cin>>i;
+    for(int &i:cost) cin>>i;
     for(int &i:page) cin>>i;
 
-    dp.resize(n+1,vector<int>(x+1,-1));
-    cout<<solve(price,page,0,x);
+    //table: dp[i][j]  most no. of pages that can be bought from i books by spending atmost j money
+    vector<vector<int>> dp(n+1,vector<int>(x+1,0));
+
+    for(int i=1;i<=n;i++){
+        int curr_cost=cost[i-1];
+        int curr_page=page[i-1];
+
+        for(int price=1;price<=x;price++){
+            dp[i][price]=dp[i-1][price];
+
+            if(curr_cost<=price){
+                dp[i][price]=max(dp[i][price],dp[i-1][price-curr_cost]+curr_page);
+                //Here price-curr_cost: Remaining money i will pick most pages in above
+            }
+        }
+
+    }
+    cout<<dp[n][x];
 }
