@@ -1,45 +1,32 @@
 #include<bits/stdc++.h>
 using namespace std;
 int mod=1e9+7;
-set<string> st;
-
-string cal(vector<int> temp){
-    sort(begin(temp),end(temp));
-    string s="";
-    for(int i:temp){
-        s+=to_string(i);
-        s+="_";
-    }
-    return s;
-}
-
-int solve(vector<int> &a,int t,vector<int> &temp,int i){
-    if(t<0){
-        return 0;
-    }
-    if(t==0){
-        string s1=cal(temp);
-        if(st.count(s1)) return 0;
-        st.insert(s1);
-        return 1;
-    }
-
-    int ans=0;
-    for(int idx=0;idx<a.size();++idx){
-        temp.push_back(a[idx]);
-        ans+=solve(a,(t-a[idx]),temp,i+1);
-        temp.pop_back();
-    }
-    return ans;
-}
 
 int main(){
     int n,x; cin>>n>>x;
 
-    vector<int> a(n);
-    for(int &i:a) cin>>i;
+    //Input
+    vector<int> coins(n);
+    for(int &i:coins)
+        cin>>i;
 
-    vector<int> temp;
+    sort(begin(coins),end(coins));
 
-    cout<<solve(a,x,temp,0);
+    vector<int> ways(x+1,0);
+    ways[0]=1;
+
+    for(int sum=1;sum<=x;sum++){
+        for(int c:coins){
+            if(c>=sum && sum-c>=0){
+                ways[sum]+=ways[sum-c];
+                if(ways[sum]>=mod)
+                    ways[sum]-=mod;
+            }
+        }
+    }
+
+    for(int i:ways) cout<<i<<" ";
+    cout<<endl;
+
+    cout<<ways[x];
 }
