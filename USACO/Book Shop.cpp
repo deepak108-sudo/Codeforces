@@ -1,34 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
-int mod=1e9+7;
-
-
 int main(){
     int n,x; cin>>n>>x;
-    vector<pair<int,int>> books(n);
 
-    vector<int> cost(n);
-    vector<int> page(n);
+    vector<int> cost(n),page(n);
 
-    for(int &i:cost) cin>>i;
-    for(int &i:page) cin>>i;
+    for(int &c:cost) cin>>c;
+    for(int &p:page) cin>>p;
 
     //table: dp[i][j]  most no. of pages that can be bought from i books by spending atmost j money
-    vector<vector<int>> dp(n+1,vector<int>(x+1,0));
+    vector<int> dp(x+1,0);  //Optimized to 1-d
 
-    for(int i=1;i<=n;i++){
-        int curr_cost=cost[i-1];
-        int curr_page=page[i-1];
-
-        for(int price=1;price<=x;price++){
-            dp[i][price]=dp[i-1][price];
-
-            if(curr_cost<=price){
-                dp[i][price]=max(dp[i][price],dp[i-1][price-curr_cost]+curr_page);
-                //Here price-curr_cost: Remaining money i will pick most pages in above
+    for(int i=0;i<n;i++){
+        for(int j=x;cost[i]<=j;j--){//Traversed from last to not alter the state of previous (to understand first understand with 2d technique)
+                dp[j]=max(dp[j],dp[j-cost[i]]+page[i]);
+                
             }
         }
-
-    }
-    cout<<dp[n][x];
+    cout<<dp[x];
 }
