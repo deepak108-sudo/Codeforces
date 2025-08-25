@@ -5,7 +5,7 @@ int mod=1e9+7;
 int main(){
     int n,x; cin>>n>>x;
 
-    //Input
+    //Input to take
     vector<int> coins(n);
     for(int &i:coins)
         cin>>i;
