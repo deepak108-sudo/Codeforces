@@ -5,7 +5,7 @@ int main(){
     while(t--){
         int n,s; cin>>n>>s;
 
-        //Taken input
+        //Taken inputs
         vector<int> a(n);
 
         //Frequency
