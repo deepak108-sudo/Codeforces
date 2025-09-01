@@ -1,25 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int check(vector<int> &t,int a){
-    int l=0,r=t.size()-1;
-    int idx=t.size();
-
-    while(l<=r){
-        int mid=l+(r-l)/2;
-
-        if(t[mid]>a){
-            idx=mid;
-            r=mid-1;
-        }
-        else{
-            l=mid+1;
-        }
-    }
-
-    return idx;
-}
-
 void solve(){
     int n; cin>>n;
     vector<int> a(n);
@@ -33,7 +14,7 @@ void solve(){
     for(int i=0;i<n;i++){
         int left=i;
 
-        int rightG=check(temp,a[i]);
+        int rightG=upper_bound(begin(temp),end(temp),a[i])-begin(temp);
         int right=n-rightG;
 
         mini=min(mini,left+right);
