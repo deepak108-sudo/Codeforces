@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-using ll=long long;
+#define int long long
 
 bool check(vector<int> &a,int s,int x,int n){
     double threshold=(double)(s+x)/(2.0*n);
@@ -26,7 +26,7 @@ void solve(){
     }
 
     //finding the no. to be less than that
-    int s=accumulate(begin(a),end(a),0);
+    int s=accumulate(begin(a),end(a),0LL);
     
     
     //Count how many are unhappy
@@ -35,7 +35,7 @@ void solve(){
         return;
     }
 
-    int l=1,r=200000;
+    int l=1,r=1e13;
     int ans=0;
     while(l<=r){
         int mid=l+(r-l)/2;
@@ -51,7 +51,7 @@ void solve(){
     cout<<ans<<endl;
 
 }
-int main(){
+signed main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
