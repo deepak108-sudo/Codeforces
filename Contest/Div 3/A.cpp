@@ -3,12 +3,8 @@ using namespace std;
 
 void solve(){
     int k,x; cin>>k>>x;
-
-    long long res=x;
-    for(int i=1;i<=k;i++){
-        res*=2;
-    }
-    cout<<res<<endl;
+    int ans=x*(1<<k);
+    cout<<ans<<endl;
 }
 
 int main(){
