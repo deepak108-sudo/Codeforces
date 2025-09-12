@@ -8,18 +8,18 @@ int main(){
 
      //Taken input
      vector<int> a(n);
-     for(int &i:a){
-        cin>>i;
-     }
+     ll cnt=0,t=0;
 
-     int threshold=a[0];
-     long long cnt=0;
-     for(int i=1;i<n;i++){
-        if(a[i]<threshold){
-            cnt+=(threshold-a[i]);
+     for(int i=0;i<n;i++){
+        if(i==0) t=a[i];
+
+        cin>>a[i];
+        //Checking
+        if(a[i]<t){
+            cnt+=(t-a[i]);
         }
         else{
-            threshold=a[i];
+            t=a[i];
         }
      }
 
