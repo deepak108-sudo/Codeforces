@@ -6,22 +6,18 @@ int main(){
      //Taken input
      string a; cin>>a;
 
-     //Calculated frequency
-     int n=a.size();
-     vector<int> f(n);
-     f[0]=1;
-
-     for(int i=1;i<n;i++){
+     int ans=1;
+     int cnt=1;
+     for(int i=1;i<(int)a.size();i++){
         if(a[i]==a[i-1]){
-            f[i]=f[i-1]+1;
+            cnt++;
+            ans=max(ans,cnt);
         }
         else{
-            f[i]=1;
+            cnt=1;
         }
      }
-
-     //Check which is maximum
-     int maxi=*max_element(begin(f),end(f));
-     cout<<maxi<<endl;
-
+     
+     //print
+     cout<<ans<<endl;
 }
