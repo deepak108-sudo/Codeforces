@@ -8,7 +8,7 @@ void solve(){
     int n=p.size();
     int m=s.size();
 
-    //intially size does not fit
+    //intially size does not fit 
     if(m<n || m>2*n || p[0]!=s[0]){ //notice the last check its for (L   R)
         cout<<"NO"<<endl;
         return;
@@ -24,7 +24,7 @@ void solve(){
         }
         else cnt++;
     }
-    pp.push_back(cnt);  //Last push
+    pp.push_back(cnt);  //Last push cnt
 
     //Do same with second string
     cnt=1;
