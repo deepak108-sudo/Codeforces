@@ -5,41 +5,23 @@ using namespace std;
 signed main(){
      //Taken input
      int n; cin>>n;
-     set<int> s1;
-     set<int> s2;
 
-     int total=n*(n+1)/2;
-     int target=total/2;
+     int target=n*(n+1)/4;
 
-     if(total%2!=0){
+     if(target%2==1){
         cout<<"NO";
-        return 0;
+        return;
      }
 
-     while(target>n){
-        s1.insert(n);
-        target-=n;
-        n--;
+     set<int> a;
+     set<int> b;
+
+     for(int i=1;i<=n;i++){
+        a.insert(i);
      }
-     s1.insert(target);
 
-     int leave=target;
-     int i=1;
-     while(i<=n){
-        if(i!=leave)
-            s2.insert(i);
-        i++;
-     } 
+     for(int i=n;i>=0;i--)
 
-     //Print
-     cout<<"YES"<<endl;
-     cout<<s1.size()<<endl;
 
-     for(int x:s1) cout<<x<<" ";
-     cout<<endl;
-
-     cout<<s2.size()<<endl;
-     for(int x:s2) cout<<x<<" ";
-     cout<<endl;
 
 }

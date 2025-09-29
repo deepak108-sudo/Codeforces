@@ -5,29 +5,19 @@ using namespace std;
 void solve(){
    int n; cin>>n;
 
-   vector<int> a(n+2);
-   for(int i=1;i<=n;i++) cin>>a[i];
+   vector<int> a(n);
+   for(int &i:a) cin>>i;
 
-   vector<int> b(n+2,0);
+   int mini=a[0];
+   for(int i=1;i<n;i++){
 
-   int ans=0;
-   
-   for(int i=1;i<=n;i+=2){
-        int mini=a[i];
-
-        if(i-2>=1){
-            mini=min({mini,a[i-1]-b[i-2]});
+        if(a[i]>(2*mini-1)){
+            cout<<"NO"<<endl;
+            return;
         }
-
-        if(i+1<=n){
-            mini=min(mini,a[i+1]);
-        }
-        
-        b[i]=mini;
-        ans+=(a[i]-b[i]);
-    }
-
-   cout<<ans<<endl;
+        mini=min(mini,a[i]);
+   }
+   cout<<"YES"<<endl;
 }
 
 
