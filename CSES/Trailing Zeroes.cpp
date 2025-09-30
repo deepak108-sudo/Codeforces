@@ -11,11 +11,9 @@ signed main(){
      //Taken input
      int n; cin>>n;
      int ans=0;
-     int deno=5;    //limiting factor
-
-     while((n/deno)>0){
-        ans+=(n/deno);
-        deno*=5;
+     
+     for(int d=5; d<=n;d*=5){
+        ans+=(n/d);
      }
     cout<<ans<<endl;
 }
