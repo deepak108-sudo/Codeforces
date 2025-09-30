@@ -4,19 +4,13 @@ using namespace std;
 
 int mod=1e9+7;
 
-int binary_exp(int b,int p){
-    int res=1;
-    
-    while(p>0){
-        if(p&1) res=(res*b)%mod;  //odd
-        b=(b*b)%mod;
-        p>>=1;;   //di)vide by 2
-    }
-
-    return res%mod;
-}
 signed main(){
      //Taken input
     int n; cin>>n;
-    cout<<binary_exp(2,n);
+    int res=1;
+    for(int i=0;i<n;i++){
+        res=(res*2)%mod;
+    }
+
+    cout<<res;
 }

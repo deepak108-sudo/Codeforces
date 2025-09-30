@@ -1,0 +1,21 @@
+//Definition: Legendre’s formula gives the exponent of a prime number p in the prime factorization of n!.
+
+//Exponent of p in n! = floor(n/p) + floor(n/p^2) + floor(n/p^3) + ... (until p^k > n)
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+
+int mod=1e9+7;
+
+signed main(){
+     //Taken input
+     int n; cin>>n;
+     int ans=0;
+     int deno=5;    //limiting factor
+
+     while((n/deno)>0){
+        ans+=(n/deno);
+        deno*=5;
+     }
+    cout<<ans<<endl;
+}
