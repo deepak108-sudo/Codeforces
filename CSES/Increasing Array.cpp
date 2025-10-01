@@ -9,6 +9,7 @@ int main(){
      //Taken input
      vector<int> a(n);
      ll cnt=0,t=0;
+     
 
      for(int i=0;i<n;i++){
         if(i==0) t=a[i];
