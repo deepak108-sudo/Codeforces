@@ -1,30 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 using ll=long long;
-
-int ans=0;
-vector<vector<int>> dirs{{0,1},{1,0}};
-void dfs(int i,int j,vector<vector<char>> &grid){
-    int n=grid.size();
-    if(i==n-1 && j==n-1){
-        ans++;
-        return;
-    }
-    if(i>=n || j>=n){
-        return;
-    }
-
-    for(auto dir:dirs){
-        int i_=i+dir[0];
-        int j_=j+dir[1];
-
-        if(i_<0 || i_>n-1 || j_<0 || j_>n-1 || grid[i_][j_]=='*') continue;
-
-        grid[i_][j_]='*';
-        dfs(i_,j_,grid);
-        grid[i_][j_]='.';
-    }
-}
+int MOD=1e9+7;
 
 int main(){
      //Taken input
@@ -38,13 +15,19 @@ int main(){
         }
      }
 
-     //base case
-     if(grid[0][0]=='*'){
-        cout<<0;
-        return 0;
+     vector<vector<int>> dp(n,vector<int>(n));
+     dp[0][0]= grid[0][0] == '.';
+
+     for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(grid[i][j]=='*') continue;
+
+            if(i>=1) dp[i][j]+=dp[i-1][j];
+            if(j>=1) dp[i][j]+=dp[i][j-1];
+
+            dp[i][j]%=MOD;
+        }
      }
 
-     dfs(0,0,grid);
-     cout<<ans<<endl;
-     return 0;
+     cout<<dp[n-1][n-1]<<endl;
 }
