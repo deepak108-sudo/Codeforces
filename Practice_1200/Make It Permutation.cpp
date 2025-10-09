@@ -6,25 +6,12 @@ void solve(){
    int n; cin>>n;
 
    cout<<2*n-1<<endl;
-   cout<<1<<" "<<1<<" "<<n<<endl;
-    int r=n-1;
-    int l=n;
-    int seq=2;
-    int key=0;
-   while(l>1){
-
-        if(key<1){
-            cout<<seq<<" "<<1<<" "<<r<<endl;
-            key++;
-            r--;
-        }
-        else{
-            cout<<seq<<" "<<l<<" "<<n<<endl;
-            l--;
-            key--;
-            seq++;
-        }
+   
+   for(int i=1;i<n;i++){
+    cout<<i<<" "<<1<<" "<<i<<endl;
+    cout<<i<<" "<<i+1<<" "<<n<<endl;
    }
+   cout<<n<<" "<<1<<" "<<n<<endl;
 }
 
 
