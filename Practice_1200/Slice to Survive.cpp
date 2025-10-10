@@ -3,54 +3,16 @@ using namespace std;
 #define int long long
 
 void solve(){
-    int n,m, a,b;
-    cin>>n>>m>>a>>b;
+    int row,col, a,b;
+    cin>>row>>col>>a>>b;
 
-    int rowU=abs(a-1), rowD=abs(a-n);
-    int colL=abs(b-1), colR=abs(b-m);
-    //cout<<rowU<<" "<<rowD<<" "<<colL<<" "<<colR<<endl;
+    int TRowCut=ceil(log2((double)row));
+    int TColCut=ceil(log2((double)col));
 
-    //cout<<colR<<endl;
+    int opRow=ceil(log2((double)min(a,row-a+1)));
+    int opCol=ceil(log2((double)min(b,col-b+1)));
 
-    int rowMax=max(rowU,rowD);
-    int colMax=max(colL,colR);
-
-    //cout<<rowMax<<" "<<colMax<<endl;
-    int tempN=n;
-    int tempM=m;
-
-        tempN-=rowMax;
-    
-
-    int res=1;
-    while(tempM>1){
-        res++;
-        tempM=ceil(tempM/2.0);
-    }
-    while(tempN>1){
-        res++;
-        tempN=ceil(tempN/2.0);
-    }
-
-    //col
-    m-=colMax;
-    //cout<<n<<" "<<m<<endl;
-
-    int ans=1;
-
-    while(n>1){
-        ans++;
-        n=ceil(n/2.0);
-        //cout<<n<<endl;
-    }
-    //cout<<"-----"<<endl;
-
-    while(m>1){
-        ans++;
-        m=ceil(m/2.0);
-        //cout<<m<<endl;
-    }
-    cout<<min(ans,res)<<endl;
+    cout<<min(TRowCut+opCol,TColCut+opRow)+1<<endl;
 }
 
 
