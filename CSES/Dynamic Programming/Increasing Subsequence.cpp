@@ -8,15 +8,14 @@ int main(){
     for(int &i:a) cin>>i;
     
     vector<int> inc;
-    inc.push_back(a[0]);
-    for(int i=1;i<n;i++){
-        if(a[i]>inc.back()){
-            inc.push_back(a[i]);
-        }
-        else{
-            int idx=lower_bound(begin(inc),end(inc),a[i])-begin(inc);
-            inc[idx]=a[i];
-        }
+    
+    for(int i:a){
+        int pos=lower_bound(begin(inc),end(inc),i)-begin(inc);
+
+        if(pos==inc.size())
+            inc.push_back(i);
+        else
+            inc[pos]=i;
     }
 
     //print
