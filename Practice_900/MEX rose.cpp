@@ -7,22 +7,21 @@ int main(){
     while(t--){
         int n,k; cin>>n>>k;
 
-        map<int,int> mp;
-        vector<int> a(n);
+        int mn=0;
+        vector<int> a(n),cnt(k,0);
         for(int &i:a) {
             cin>>i;
-            mp[i]++;
+            if(i==k) mn++;
+            if(i<k)
+            cnt[i]++;
         }
 
-        int mx1=mp[k];
-        int mx2=0;
-
-        for(int i=0;i<k;i++){
-            if(!mp.count(i)){
-                mx2++;
-            }
-        }
+        //check which is missing
+        int ans=0;
+        for(int &i:cnt)
+            if(i==0)
+                ans++;
     
-            cout<<max(mx1,mx2)<<endl;
+            cout<<max(ans,mn)<<endl;
     }
 }
