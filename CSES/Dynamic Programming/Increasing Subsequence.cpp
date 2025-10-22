@@ -5,19 +5,20 @@ int main(){
     int n; cin>>n;
     vector<int> a(n);
 
-    //d[i] = LIS till i index
-    vector<int> d(n,1);
-
     for(int &i:a) cin>>i;
-
-    for(int i=0;i<n;i++){
-        for(int j=0;j<i;j++){
-            if(a[j]<a[i] && d[i]<=d[j]){
-                d[i]=d[j]+1;
-            }
+    
+    vector<int> inc;
+    inc.push_back(a[0]);
+    for(int i=1;i<n;i++){
+        if(a[i]>inc.back()){
+            inc.push_back(a[i]);
+        }
+        else{
+            int idx=lower_bound(begin(inc),end(inc),a[i])-begin(inc);
+            inc[idx]=a[i];
         }
     }
 
     //print
-    cout<<*max_element(begin(d),end(d))<<endl;
+    cout<<inc.size()<<endl;
 }
