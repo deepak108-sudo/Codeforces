@@ -3,34 +3,33 @@ using namespace std;
 
 int main(){
     int n; cin>>n;
-    vector<int> a1(n,0);
-    vector<int> a2(n,0);
+    vector<int> a(n+1,0);
+    vector<int> b(n+1,0);
 
+    //taken input
+    for(int i=1;i<=n;i++) cin>>a[i];
+    for(int i=1;i<=n;i++) cin>>b[i];
 
-    for(int &i:a1) cin>>i;
-    for(int &i:a2) cin>>i;
-
-    vector<int> prev(n+1,0);
-    vector<int> curr(n+1,0);
+    //Stored position of a in pos[i]
+    vector<int> pos(n+1,0);
     for(int i=1;i<=n;i++){
-        for(int j=1;j<=n;j++){
-            if(a1[i-1]==a2[j-1]){
-                curr[j]=prev[j-1]+1;
-            }
-            else{
-                curr[j]=max(prev[j],curr[j-1]);
-            }
-        }
-        prev=curr;
+        pos[a[i]]=i;
     }
 
-    //print
-    // for(int i=0;i<=n;i++){
-    //     for(int j=0;j<=n;j++){
-    //         cout<<dp[i][j]<<" ";
-    //     }
-    //     cout<<endl;
-    // }
+    //c[i] position of b[i] in a
+    vector<int> c(n+1,0);
+    for(int i=1;i<=n;i++){
+        c[i]=pos[b[i]];
+    }
 
-    cout<<prev[n]<<endl;
+    //Now find lis: magic happen in distinct gives lis
+    vector<int> lis;
+    for(int i=1;i<=n;i++){
+        int p=lower_bound(begin(lis),end(lis),c[i])-begin(lis);
+
+        if(p==lis.size()) lis.push_back(c[i]);
+        else lis[p]=c[i];
+    }
+
+    cout<<lis.size()<<endl;
 }
