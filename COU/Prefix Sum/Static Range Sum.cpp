@@ -4,24 +4,19 @@ using namespace std;
 
 signed main(){
     int n,q; cin>>n>>q;
-    vector<int> a(n);
+    vector<int> prefix(n,0);
 
-    for(int &i:a) cin>>i;
-
-    vector<int> p(n,0);
-    p[0]=a[0];
+    cin>>prefix[0];
     for(int i=1;i<n;i++){
-        p[i]=p[i-1]+a[i];
+        int x; cin>>x;
+        prefix[i]=prefix[i-1]+x;
     }
 
-    //now process the query
+    //process query
     for(int i=0;i<q;i++){
         int l,r; cin>>l>>r;
-
-        if(l==0){
-            cout<<p[r-1]<<endl;
-            continue;
-        }
-        cout<<p[r-1]-p[l-1]<<endl;
+        
+        if(l==0) cout<<prefix[r-1]<<endl;
+        else cout<<prefix[r-1]-prefix[l-1]<<endl;
     }
 }
