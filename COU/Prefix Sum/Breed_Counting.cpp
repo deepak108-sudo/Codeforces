@@ -5,40 +5,22 @@ using namespace std;
 signed main(){
     freopen("bcount.in", "r", stdin);
 	freopen("bcount.out", "w", stdout);
-    
+
     int n,q; cin>>n>>q;
-    int one[n]={0},two[n]={0},three[n]={0};
+   vector<vector<int>> cows(n+1,vector<int>(3,0));
 
-    int x; cin>>x;
-    //x-=1; //to convert 0 indexed
-    if(x==1) one[0]=1;
-    else if(x==2) two[0]=1;
-    else three[0]=1;
+   for(int i=1;i<=n;i++){
+        int type; cin>>type;
+        cows[i][0]=cows[i-1][0]+(type==1);
+        cows[i][1]=cows[i-1][1]+(type==2);
+        cows[i][2]=cows[i-1][2]+(type==3);
+   }
 
-    //calculate the prefix
-    for(int i=1;i<n;i++){
-        one[i]=one[i-1];
-        two[i]=two[i-1];
-        three[i]=three[i-1];
-
-        cin>>x;
-        if(x==1)
-            one[i]=one[i-1]+1;
-
-        else if(x==2) two[i]=two[i-1]+1;
-        
-        else three[i]=three[i-1]+1;
-    }
-
-    //process the query
+   //process query
     for(int i=0;i<q;i++){
-        int l,r; cin>>l>>r;
-        l--;
-        r--;
-        if(l==0){
-            cout<<one[r]<<" "<<two[r]<<" "<<three[r]<<endl;
-            continue;
-        }
-        cout<<one[r]-one[l-1]<<" "<<two[r]-two[l-1]<<" "<<three[r]-three[l-1]<<endl;
-    }
+        int start,end; cin>>start>>end;
+        cout<<cows[end][0]-cows[start-1][0]<<" ";
+        cout<<cows[end][1]-cows[start-1][1]<<" ";
+        cout<<cows[end][2]-cows[start-1][2]<<endl;
+   }
 }
