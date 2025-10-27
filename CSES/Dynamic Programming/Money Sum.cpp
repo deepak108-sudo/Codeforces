@@ -2,36 +2,40 @@
 using namespace std;
 using ll=long long;
 
-int n;
-int dp[100+1][100000+1];
-
-void solve(int i,vector<int> &a,int curr_sum,vector<int> &result){
-    if(dp[i][curr_sum]!=-1) return;
-    dp[i][curr_sum]=1;
-
-    if(i==a.size()){
-        if(curr_sum!=0)
-        result.push_back(curr_sum);
-        return;
-    }
-    
-    solve(i+1,a,curr_sum+a[i],result);
-    solve(i+1,a,curr_sum,result);
-
-}
 
 int main(){
-    memset(dp,-1,sizeof(dp));
-   cin>>n;
+   int n; cin>>n;
    vector<int> a(n);
-
    for(int &i:a) cin>>i;
-   vector<int> result;
 
-   solve(0,a,0,result);
+   int total=accumulate(begin(a),end(a),0);
 
-   //print
-   sort(begin(result),end(result));
-   cout<<result.size()<<endl;
-   for(int &i:result) cout<<i<<" ";
+   vector<vector<bool>> dp(n,vector<bool>(total+1,false));
+
+   dp[0][0]=true;
+   dp[0][a[0]]=true;
+
+   
+   for(int i=1;i<n;i++){
+        for(int curr_sum=0;curr_sum<=total;curr_sum++){
+            dp[i][curr_sum]=dp[i-1][curr_sum];
+            
+            int prev_sum=curr_sum-a[i];
+            if(prev_sum>=0 && dp[i-1][prev_sum]) {
+                dp[i][curr_sum]=true;
+            }
+        }
+   }
+
+   //count no. of trues;
+   int cnt=0;
+   for(int sum=1;sum<=total;sum++){
+        if(dp[n-1][sum]) cnt++;
+   }
+
+    //now traverse
+    cout<<cnt<<endl;
+    for(int sum=1;sum<=total;sum++){
+        if(dp[n-1][sum]) cout<<sum<<" ";
+    }
 }
