@@ -15,14 +15,17 @@ signed main(){
   prefix[0]=a[0];
 
   for(int i=1;i<n;i++){
-    prefix[i]=prefix[i-1]+a[i];
+    prefix[i]=(prefix[i-1]+a[i])%7;
   }
 
   int maxi=0;
+  vector<int> lastFound(7,-1);
   for(int i=0;i<n;i++){
-    for(int j=i;j<n;j++){
-        if((prefix[j]-prefix[i])%7==0)
-          maxi=max(maxi,(j-i));
+    if(lastFound[prefix[i]]==-1){
+      lastFound[prefix[i]]=i;
+    }
+    else{
+      maxi=max(maxi,i-lastFound[prefix[i]]);
     }
   }
 
