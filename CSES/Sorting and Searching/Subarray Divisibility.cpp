@@ -10,23 +10,15 @@ signed main(){
         cin>>i;
    }
 
-   //found out prefix sum appended 0 at beginning
-   vector<int> prefix(n+1,0);
-   prefix[1]=a[0]%n;
-
-   for(int i=2;i<=n;i++){
-        prefix[i]=(prefix[i-1]+a[i-1])%n;
-        if(prefix[i]<0) prefix[i]+=n;
-   }
+   map<int,int> seen;
+   seen[0]++;
    
-    int cnt=0;
-    map<int,int> st; //to remember we have seen the value before
-   for(int i=0;i<=n;i++){
-   // int rem=prefix[i]-x;
-    if(st.count(prefix[i])){
-        cnt+=st[prefix[i]];
-    }
-    st[prefix[i]]++;
+   int sum=0,cnt=0;
+   for(int i=0;i<n;i++){
+        sum+=(a[i]%n);
+        sum=(sum+n)%n;
+        cnt+=seen[sum];
+        seen[sum]++;
    }
 
    cout<<cnt<<endl;
