@@ -8,31 +8,25 @@ void solve(){
   
   //taking input
   int onesBit=0;
-  vector<int> bits(32,0);
-  for(int i=0;i<n;i++){
-    int x; cin>>x;
+  vector<int> a(n);
+  for(int &i:a){
+    cin>>i;
+    onesBit+=__builtin_popcount(i);
+  }
 
-    for(int i=0;i<32;i++){
-      if((x&(1LL<<i))==0) bits[i]++;
-      else onesBit++;
+  //checking each bit
+  for(int i=0;i<=60;i++){
+    int placeVal=(1LL<<i);
+    for(int val:a){
+      if(!(val & placeVal) && k>=placeVal){
+        onesBit++;
+        k-=placeVal;
+      }
     }
   }
 
-  //print
-  // for(auto &c:bits) cout<<c<<" ";
-  // cout<<"-----"<<onesBit<<"-----"<<endl;
-
-  //calculate
-  int sum=0;
-  for(int i=0;i<32;i++){
-    int kReq=bits[i]*(1LL)*pow(2,i);
-
-      sum+=min(k,kReq);
-      k-=min(k,kReq);
-
-    if(k<=0) break;
-  }
-  cout<<onesBit+sum<<endl;
+  //print output
+  cout<<onesBit<<endl;
 }
 
 
