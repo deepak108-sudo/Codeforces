@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n,m;
-vector<vector<int>> vis;
-vector<vector<char>> grid;
+char grid[1001][1001];
+int vis[1001][1001];
 
 void floodFill(int r,int c,char dot){
     if(r<0 || r>=n || c<0 || c>=m || vis[r][c]==true || grid[r][c]!=dot) return;
@@ -16,9 +16,8 @@ void floodFill(int r,int c,char dot){
 }
 
 void solve(){
+    memset(vis,0,sizeof(vis));
     cin>>n>>m;
-    vis.resize(n,vector<int>(m,0));
-    grid.resize(n,vector<char>(m));
 
     //taking input
     for(int i=0;i<n;i++){
@@ -27,8 +26,7 @@ void solve(){
         }
     }
 
-
-    
+  
     int ans=0;
     for(int i=0;i<n;i++){
         for(int j=0;j<m;j++){
