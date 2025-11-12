@@ -9,20 +9,21 @@ int main(){
     for(ll &i:b) cin>>i;
     
     int i=0,j=0;
-    int maxi=0,sum=0,cnt=0;
+    int max_b=0,curr_t=0,curr_b=0;
     while(j<n){
-        sum+=b[j];
-        if(sum<=t) {
-            cnt++;
-            maxi=max(maxi,cnt);
+        curr_t+=b[j];
+        curr_b++;
+        if(curr_t<=t) {
+            max_b=max(max_b,curr_b);
         }
 
-        if(sum>t){
-            cnt-=1;
-            sum-=b[i];
+        while(curr_t>t){
+            curr_b-=1;
+            curr_t-=b[i];
+            i++;
         } 
         j++;
     }
 
-    cout<<cnt<<endl;
+    cout<<curr_b<<endl;
 }
