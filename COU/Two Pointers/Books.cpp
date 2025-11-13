@@ -25,5 +25,5 @@ int main(){
         j++;
     }
 
-    cout<<curr_b<<endl;
+    cout<<max_b<<endl;
 }

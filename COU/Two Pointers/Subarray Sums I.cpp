@@ -8,18 +8,12 @@ int main(){
     vector<int> b(n);
     for(int &i:b) cin>>i;
     
-    int i=0,j=0,cnt=0,sum=0;
-    while(j<n){
-        sum+=b[j];
-
+    int l=0,r=0,cnt=0,sum=0;
+    while(r<n){
+        sum+=b[r++];
         //First neutralize if greater
-        while(sum>t){
-            sum-=b[i];
-            i++;
-        }
-
+        while(sum>t)    sum-=b[l++];
         cnt+=(sum==t);
-        j++;
     }
     cout<<cnt<<endl;
 }
