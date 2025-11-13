@@ -4,19 +4,21 @@ using ll=long long;
 
 int main(){
     int n,m; cin>>n>>m;
-    vector<ll> cities(n),towers(m+2);
-    towers[0]=-1e18,towers[m+1]=1e18;
+    vector<int> cities(n),towers(m);
 
     for(int i=0;i<n;i++) cin>>cities[i];
-    for(int i=1;i<=m;i++) cin>>towers[i];
+    for(int i=0;i<m;i++) cin>>towers[i];
 
-    ll ans=0;
-    for(int i=0;i<n;i++){
-        int right=lower_bound(begin(towers),end(towers),cities[i])-begin(towers);
+    int ans=0;
+    int r=0,l=0;
+    for(int x:cities){
+        while(r+1<m && towers[r]<x)
+            r++;
 
-        int left=right-1;
+        if(r!=0) l=r-1;
 
-        ans=max(ans,min(cities[i]-towers[left],towers[right]-cities[i]));
+        ans=max(ans,min(abs(towers[r]-x),abs(towers[l]-x)));
+        
     }
     cout<<ans<<endl;
 }
