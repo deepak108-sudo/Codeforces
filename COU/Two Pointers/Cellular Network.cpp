@@ -13,7 +13,7 @@ int main(){
     int r=0,l=0;
     for(int x:cities){
         while(r+1<m && towers[r]<x)
-            r++;
+            r++; 
 
         if(r!=0) l=r-1;
 
