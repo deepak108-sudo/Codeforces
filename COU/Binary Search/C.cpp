@@ -14,6 +14,7 @@ void solve(){
         cin>>a[i-1]; sum+=a[i-1];
         ans=max(ans,i*i+i-sum+mx_val);
     }
+    
     cout<<ans+sum<<endl;
 }
 
