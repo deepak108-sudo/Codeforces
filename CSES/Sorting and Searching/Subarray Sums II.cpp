@@ -16,6 +16,7 @@ signed main(){
         prefix[i]=prefix[i-1]+a[i-1];
    }
    
+   
     int cnt=0;
     map<int,int> st; //to remember we have seen the value before
    for(int i=0;i<=n;i++){
