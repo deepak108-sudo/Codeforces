@@ -17,7 +17,7 @@ signed main(){
    }
    
    
-    int cnt=0;
+    int cnt=0; //set count to zero
     map<int,int> st; //to remember we have seen the value before
    for(int i=0;i<=n;i++){
     int rem=prefix[i]-x;
