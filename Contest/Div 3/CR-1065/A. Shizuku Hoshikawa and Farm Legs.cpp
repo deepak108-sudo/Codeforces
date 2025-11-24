@@ -3,17 +3,8 @@ using namespace std;
 
 void solve(){
     int n; cin>>n;
-    
-    int res=0;
-    for(int i=0;i<=100;i++){
-        for(int j=0;j<100;j++){
-            if(2*i+4*j==n){
-                res++;
-            }
-        }
-    }
 
-    cout<<res<<endl;
+    cout<<(n&1 ? 0 : (n/4+1))<<endl;
 }
 
 int main(){
