@@ -6,7 +6,7 @@ signed main(){
     int n,m; cin>>n>>m;
 
     //Ticket price ---> sort automatically in descending order
-    multiset<int,greater<int>> st;
+    multiset<int> st;
     int x;
     while(n--){
         cin>>x;
@@ -17,10 +17,11 @@ signed main(){
     //Apply bs and find no. <= target
    while(m--){
      cin>>x;
-     auto it=st.lower_bound(x); //found <=x because array in descending order
+     auto it=st.upper_bound(x); //found <=x because array in descending order
 
-     if(it==st.end()) cout<<-1<<endl;
+     if(it==st.begin()) cout<<-1<<endl;
      else {
+        it--;
         cout<<*it<<endl;
         st.erase(it);
      }
