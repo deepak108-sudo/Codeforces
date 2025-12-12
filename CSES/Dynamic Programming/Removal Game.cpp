@@ -3,26 +3,31 @@ using namespace std;
 typedef long long ll;
 
 vector<int> a;
-vector<vector<ll>> dp;
-
-ll solve(int i,int j){
-    if(i>j) return 0;
-    if(dp[i][j]!=-1) return dp[i][j];
-
-    ll leftTake=a[i]+min(solve(i+2,j),solve(i+1,j-1));
-    ll rightTake=a[j]+min(solve(i+1,j-1),solve(i,j-2));
-
-    return dp[i][j]=max(leftTake,rightTake);
-}
 
 int main(){
     int n; cin>>n;
     a.resize(n);
-
+    
     for(int &i:a){
         cin>>i;
     }
+    vector<vector<ll>> dp(n,vector<ll>(n));
+    
+    for(int d=0;d<n;d++){
+        for(int i=0,j=d;j<n;++i,++j){
+            if(d==0){
+                dp[i][j]=a[i];
+            }
+            else if(d==1){
+                dp[i][j]=max(a[i],a[j]);
+            }
+            else{
+                ll val1=a[i]+min(dp[i+2][j],dp[i+1][j-1]);
+                ll val2=a[j]+min(dp[i+1][j-1],dp[i][j-2]);
 
-    dp.assign(n,vector<ll>(n,-1));
-    cout<<solve(0,n-1);
+                dp[i][j]=max(val1,val2);
+            }
+        }
+    }
+    cout<<dp[0][n-1]<<endl;
 }
