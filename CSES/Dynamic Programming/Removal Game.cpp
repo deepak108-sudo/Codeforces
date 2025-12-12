@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-
+// Watch if you forgot the concept of bottom up: https://www.youtube.com/watch?v=eAG3QFsIPvo
 vector<int> a;
 
 int main(){
