@@ -2,7 +2,7 @@
 using namespace std;
 #define int long long
 int total=1e9+1;
-
+//Binary Search 
 void solve(){
   int n,m; cin>>n>>m;
 
