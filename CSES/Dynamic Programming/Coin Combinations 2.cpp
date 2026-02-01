@@ -12,6 +12,8 @@ int mod=1e9+7;
 //     }
 //     if(x==0){
 //         return 1;
+
+//jjj
 //     }
 //     if(dp[i][x]!=-1){
 //         return dp[i][x];
