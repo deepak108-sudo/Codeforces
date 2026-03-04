@@ -2,13 +2,18 @@
 using namespace std;
 
 void solve(){
-   int n,d; cin>>n>>d;
+   int n; cin>>n;
+   string s; cin>>s;
+   int zero=0,one=0;
 
-   cout<<1<<" ";
-        if(n>=3 || d%3==0) cout<<3<<" ";
-        if(d==5) cout<<5<<" "; //since 0 is not included
-        if(n>=3 || d==7) cout<<7<<" "; //tricker
-        if(d==9 || n>=6 || (d%3==0 && n>=3)) cout<<9<<" "; 
+   for(auto &ch:s){
+    if(ch=='1') one++;
+    else zero++;
+   }
+
+   if(one>=zero) cout<<"YES";
+   else cout<<"NO";
+   
    cout<<endl;
 }
 int main(){
