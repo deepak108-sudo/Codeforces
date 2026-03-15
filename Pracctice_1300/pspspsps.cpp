@@ -7,32 +7,16 @@ void solve(){
    int n; cin>>n;
    string s; cin>>s;
 
-   //ps... pattern always no
-   // bool flag=false;
-    int posIdx=s.find('p');
+   if(s[0]=='s') s[0]='.';
+   if(s[n-1]=='p') s[n-1]='.';
 
-    if(posIdx!=string::npos){
-        for(int i=posIdx+1;i<n;i++){
-            if(s[i]=='s'){
-                cout<<"NO"<<endl;
-                return;
-            }
-        }
-    }
-   
-    //for other
-    //s and p at edges having the permutation
-    int flagP=0,flagS=0;
-    for(int i=1;i<n-1;i++){
-            if(s[i]=='s') flagS=true;
-            else if(s[i]=='p') flagP=true;
-    }
-
-    if(flagP==true && flagS==true){
-        cout<<"NO"<<endl;
+    int idxS=s.find('s');
+    int idxP=s.find('p');
+    if(idxS == string::npos || idxP==string::npos){
+        cout<<"YES"<<endl;
         return;
     }
-    cout<<"YES"<<endl;
+    cout<<"NO"<<endl;
 }
 
 
